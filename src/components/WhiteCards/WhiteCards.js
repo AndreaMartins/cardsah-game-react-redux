@@ -21,6 +21,12 @@ const whiteCards = (props) => {
             />
           )
         )}
+        {props.picked ?
+          <div>
+            <p>{props.blackCardPicked.phrase}</p>
+            {props.pickedCard ? props.pickedCard.phrase : null }
+          </div> : null
+        }
       </div>
     </div>
   );
@@ -28,7 +34,10 @@ const whiteCards = (props) => {
 
 const mapStateToProps = state => {
   return{
-    whiteCardsPicked : state.whiteCardsPicked
+    whiteCardsPicked : state.whiteCardsPicked,
+    blackCardPicked: state.blackCardPicked,
+    pickedCard: state.pickedCard,
+    picked: state.picked
   }
 };
 

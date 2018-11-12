@@ -31,9 +31,8 @@ const shuffleWhiteCards = () =>{
 const initialState = {
     blackCardPicked: shuffleBlackCard(),
     whiteCardsPicked : shuffleWhiteCards(),
-    picked: true,
+    picked: false,
     pickedCard: '',
-    results: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -45,7 +44,8 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        pickedCard: thePickedCard
+        pickedCard: thePickedCard,
+        picked: true
       };
     case actionTypes.OPEN_DETAIL:
       return {
