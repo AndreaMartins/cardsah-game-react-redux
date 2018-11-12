@@ -1,6 +1,7 @@
 import React from 'react';
 import BlackBlock from './BlackBlock/BlackBlock';
 import WhiteBlock from './WhiteBlock/WhiteBlock';
+import ResultBlock from '../ResultBlock/ResultBlock';
 
 const GameBlock = (props) => {
 
@@ -8,6 +9,7 @@ const GameBlock = (props) => {
     <div>
       <BlackBlock/>
       <WhiteBlock/>
+      <ResultBlock/>
     </div>
   );
 };

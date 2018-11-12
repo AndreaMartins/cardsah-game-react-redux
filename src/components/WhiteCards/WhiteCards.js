@@ -17,16 +17,9 @@ const whiteCards = (props) => {
               id={card.id}
               phrase= {card.phrase}
               clicked={() =>props.onStoreResult(card.id, card.phrase)}
-              // changed ={(event) => props.changed(event, card.id)}
             />
           )
         )}
-        {props.picked ?
-          <div>
-            <p>{props.blackCardPicked.phrase}</p>
-            {props.pickedCard ? props.pickedCard.phrase : null }
-          </div> : null
-        }
       </div>
     </div>
   );
