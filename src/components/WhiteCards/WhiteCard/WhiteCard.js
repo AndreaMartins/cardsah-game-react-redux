@@ -1,16 +1,17 @@
 import React from 'react';
 import classes from './WhiteCard.css';
+import WhiteCardDet from './WhiteCardDet/WhiteCardDet'
 
 const whiteCard = (props) => {
 
   return(
-    <div className="classes.WhiteCard">
+    <div className="classes.WhiteCard" onClick ={props.clicked}>
       <div>
-        <p>{props.phrase}</p>
+        <button>{props.phrase}</button>
       </div>
     </div>
   )
-
 };
+
 
 export default whiteCard;
