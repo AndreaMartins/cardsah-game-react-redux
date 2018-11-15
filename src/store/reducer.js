@@ -31,8 +31,13 @@ const shuffleWhiteCards = () =>{
 const initialState = {
     blackCardPicked: shuffleBlackCard(),
     whiteCardsPicked : shuffleWhiteCards(),
-    picked: false,
     pickedCard: '',
+    detailedCard:'',
+    editedCard: '',
+    picked: false,
+    isEditing: false,
+    isAdding: false,
+    isDetailing: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -48,25 +53,32 @@ const reducer = (state = initialState, action) => {
         picked: true
       };
     case actionTypes.OPEN_DETAIL:
+      const theDetailedCard = {
+        id:action.cardData.id,
+        phrase:action.cardData.phrase
+      }
       return {
         ...state,
-        picked:false
+        detailedCard:theDetailedCard,
+        isDetailing: true,
       };
     case actionTypes.ADD_CARD:
       return {
         ...state,
-        picked:true
+        picked:true,
+        isAdding: true,
       };
-    case actionTypes.REMOVE_CARD:
+    case actionTypes.EDIT_CARD:
       return {
         ...state,
-        picked:false
+        picked:false,
+        isEditing:true
       };
-    case actionTypes.PICKED_CARD:
+    case actionTypes.CLOSE_MODAL:
       return {
         ...state,
-        picked:false
-      };
+
+      }
     default:
       return state;
   }

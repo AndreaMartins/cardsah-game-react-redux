@@ -5,9 +5,10 @@ import WhiteCardDet from './WhiteCardDet/WhiteCardDet'
 const whiteCard = (props) => {
 
   return(
-    <div className="classes.WhiteCard" onClick ={props.clicked}>
-      <div>
-        <button>{props.phrase}</button>
+    <div className="WhiteCard" onClick ={props.clicked}>
+      <p>{props.phrase}</p>
+      <div className="hover__WhiteCard" >
+        <p>Select this card</p>
       </div>
     </div>
   )

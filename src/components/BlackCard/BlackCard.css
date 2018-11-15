@@ -1,0 +1,14 @@
+.BlackCard {
+  display: flex;
+  height:200px;
+  width:150px;
+  color:white;
+  background-color: black;
+}
+
+.container__BlackCard {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height:300px;
+}

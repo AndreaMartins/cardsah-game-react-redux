@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 const blackCard = (props) => {
 
   return(
-    <div className="classes.BlackCard">
-      <div>
+    <div className="container__BlackCard">
+      <div className="BlackCard">
         <p>{props.blackCardPicked}</p>
       </div>
     </div>

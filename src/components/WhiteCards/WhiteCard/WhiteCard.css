@@ -1,0 +1,44 @@
+.WhiteCard {
+  display: flex;
+  flex-direction: column;
+  height:200px;
+  width:150px;
+  color:black;
+  background-color: white;
+  border: 1px solid black;
+  justify-content: space-between;
+}
+
+.hover__WhiteCard {
+  display: flex;
+  flex-direction: column;
+  height:100px;
+  width:150px;
+  justify-content: center;
+  display:none
+}
+
+.WhiteCard:hover {
+  background-color: yellow;
+}
+
+.WhiteCard:hover .hover__WhiteCard {
+  display: flex;
+}
+
+.options__WhiteCard {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+.add__WhiteCard {
+  margin: 50px 0;
+}
+
+.add__WhiteCard button {
+  height: 50px;
+  width: 50px;
+  font-size: 24px;
+  cursor: pointer;
+}
