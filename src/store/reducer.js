@@ -11,7 +11,7 @@ const whiteCardGroup =[
   { phrase: 'Being on fire', id:'w1'},
   { phrase: 'Racism', id:'w2'},
   { phrase: 'Old-people smell', id:'w3'},
-  { phrase: 'A micropenis',id:'w4'},
+  { phrase: 'A micropenis', id:'w4'},
   { phrase: 'Women in yogurt commercials', id:'w5'},
   { phrase: 'Classist undertones', id:'w6'}
 ]
@@ -34,6 +34,7 @@ const initialState = {
     pickedCard: '',
     detailedCard:'',
     editedCard: '',
+    addedCard:'',
     picked: false,
     isEditing: false,
     isAdding: false,
@@ -62,22 +63,65 @@ const reducer = (state = initialState, action) => {
         detailedCard:theDetailedCard,
         isDetailing: true,
       };
-    case actionTypes.ADD_CARD:
+    case actionTypes.CLOSE_DETAIL:
       return {
         ...state,
-        picked:true,
+        detailedCard:'',
+        isDetailing:false
+      }
+    case actionTypes.OPEN_EDIT:
+      const theEditedCard = {
+        id:action.cardData.id,
+        phrase:action.cardData.phrase
+      }
+      return {
+        ...state,
+        editedCard: theEditedCard,
+        isEditing: true,
+      }
+    case actionTypes.UPDATE_EDIT:
+      const theUpdatedCard = {
+        id:action.cardData.id,
+        phrase:action.cardData.phrase
+      }
+
+      return{
+        ...state,
+        whiteCardsPicked :
+        state.whiteCardsPicked.map((e)=> {
+            if (e.id == state.editedCard.id){
+              return theUpdatedCard
+            }
+            return e
+          }),
+        isEditing: true
+      }
+    case actionTypes.CLOSE_EDIT:
+      return{
+        ...state,
+        editedCard:'',
+        isEditing:false
+      }
+    case actionTypes.OPEN_ADD:
+      return {
+        ...state,
         isAdding: true,
       };
-    case actionTypes.EDIT_CARD:
+    case actionTypes.ADD_CARD:
+      const theAddedCard = {
+        id:action.cardData.id,
+        phrase:action.cardData.phrase
+      }
+      return{
+        ...state,
+        whiteCardsPicked:state.whiteCardsPicked.concat(theAddedCard),
+        addedCard:'',
+        isAdding: true
+      }
+    case actionTypes.CLOSE_ADD:
       return {
         ...state,
-        picked:false,
-        isEditing:true
-      };
-    case actionTypes.CLOSE_MODAL:
-      return {
-        ...state,
-
+        isAdding:false,
       }
     default:
       return state;

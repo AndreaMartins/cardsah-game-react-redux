@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import WhiteCard from './WhiteCard/WhiteCard';
 import WhiteCardDet from './WhiteCard/WhiteCardDet/WhiteCardDet';
+import WhiteCardForm from './WhiteCard/WhiteCardForm/WhiteCardForm';
+import WhiteCardAdd from './WhiteCard/WhiteCardAdd/WhiteCardAdd';
 
 const whiteCards = (props) => {
-
-  let phrase = "Justin Bieber"
 
   return(
     <div>
@@ -32,6 +32,8 @@ const whiteCards = (props) => {
         )}
       </div>
       <div>{props.isDetailing ? <WhiteCardDet/> : null }</div>
+      <div>{props.isEditing ? <WhiteCardForm/> : null }</div>
+      <div>{props.isAdding ? <WhiteCardAdd/> : null }</div>
       <div className="add__WhiteCard">
         <button onClick={() =>props.onOpenAddCard()}> + </button>
       </div>
@@ -56,8 +58,8 @@ const mapDispatchToProps = dispatch => {
   return{
     onStoreResult: (id, phrase) => dispatch({type: 'STORE_RESULT', cardData:{id:id, phrase: phrase}}),
     onOpenDetail: (id, phrase) => dispatch({type:'OPEN_DETAIL', cardData:{id:id, phrase: phrase}}),
-    onOpenEdit: (id, phrase) => dispatch({type:'EDIT_CARD', cardData:{id:id, phrase: phrase}}),
-    onOpenAddCard: () => dispatch({type:'ADD_CARD'}),
+    onOpenEdit: (id, phrase) => dispatch({type:'OPEN_EDIT', cardData:{id:id, phrase: phrase}}),
+    onOpenAddCard: () => dispatch({type:'OPEN_ADD'}),
   };
 };
 
