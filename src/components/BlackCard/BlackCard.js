@@ -7,7 +7,7 @@ const blackCard = (props) => {
   return(
     <div className="container__BlackCard">
       <div className="BlackCard">
-        <p>{props.blackCardPicked}</p>
+        <p>{props.blackCardPicked.phrase}</p>
       </div>
     </div>
   );
@@ -15,7 +15,7 @@ const blackCard = (props) => {
 
 const mapStateToProps = state => {
   return {
-    blackCardPicked: state.blackCardPicked.phrase
+    blackCardPicked: state.blackCardPicked
   }
 }
 

@@ -16,15 +16,15 @@ class WhiteBlock extends Component {
         {this.props.whiteCardsPicked.length > 0 ?
           <WhiteCards/> : null
         }
-
       </div>
     )
   };
 };
 
-const mapStateToProps =state => {
+const mapStateToProps = state => {
   return{
     whiteCardsPicked : state.whiteCardsPicked,
+    blackCardPicked: state.blackCardPicked
   };
 };
 

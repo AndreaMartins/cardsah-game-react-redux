@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions'
 
 import BlackCard from '../../../components/BlackCard/BlackCard';
 
 class BlackBlock extends Component {
+
 
   render () {
     return (
@@ -13,5 +15,6 @@ class BlackBlock extends Component {
     )
   };
 };
+
 
 export default BlackBlock;
