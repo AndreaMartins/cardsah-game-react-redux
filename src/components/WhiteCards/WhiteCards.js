@@ -38,7 +38,6 @@ const whiteCards = (props) => {
         <button onClick={() =>props.onOpenAddCard()}> + </button>
       </div>
     </div>
-
   );
 };
 

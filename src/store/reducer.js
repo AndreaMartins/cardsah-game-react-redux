@@ -29,6 +29,7 @@ const shuffleWhiteCards = () =>{
 
 // initial state deberia ser una copia de un shuffle y quedarse asi
 const initialState = {
+    cards:'',
     blackCardPicked: shuffleBlackCard(),
     whiteCardsPicked : shuffleWhiteCards(),
     pickedCard: '',
@@ -38,11 +39,13 @@ const initialState = {
     picked: false,
     isEditing: false,
     isAdding: false,
-    isDetailing: false
+    isDetailing: false,
+    error: false
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     case actionTypes.STORE_RESULT:
       const thePickedCard = {
         id:action.cardData.id,
@@ -53,6 +56,20 @@ const reducer = (state = initialState, action) => {
         pickedCard: thePickedCard,
         picked: true
       };
+
+    case actionTypes.SET_CARDS:
+      return {
+        ...state,
+        cards: action.cards,
+        blackCardPicked: action.cards.blackCardGroup.slice(0,1),
+        whiteCardsPicked:action.cards.whiteCardGroup.slice(0,3)
+      };
+    case actionTypes.FETCH_INGREDIENTS_FAILED:
+      return {
+        ...state,
+        error: true
+      }
+
     case actionTypes.OPEN_DETAIL:
       const theDetailedCard = {
         id:action.cardData.id,
