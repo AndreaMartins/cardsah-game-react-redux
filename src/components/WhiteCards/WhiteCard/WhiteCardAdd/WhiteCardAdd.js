@@ -10,8 +10,12 @@ class whiteCardAdd extends Component {
     }
   }
 
+  prefix = 'w'
+
+  lastId = this.props.whiteCardGroup.length
+
   inputChangedHandler = (event) => {
-    this.setState({cardData:{phrase:event.target.value}});
+    this.setState({cardData:{phrase:event.target.value, id: `${this.prefix}${this.lastId}`}});
   }
 
 
@@ -36,7 +40,10 @@ class whiteCardAdd extends Component {
 const mapStateToProps = state => {
   return {
     isAdding: state.isAdding,
-    addedCard: state.addedCard
+    addedCard: state.addedCard,
+    whiteCardsPicked: state.whiteCardsPicked,
+    whiteCardGroup: state.whiteCardGroup,
+    blackCardGroup: state.blackCardGroup
   }
 };
 

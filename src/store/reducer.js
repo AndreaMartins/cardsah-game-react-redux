@@ -11,6 +11,8 @@ const initialWhiteCards =[
 // initial state deberia ser una copia de un shuffle y quedarse asi
 const initialState = {
     cards:'',
+    whiteCardGroup:'',
+    blackCardGroup:'',
     blackCardPicked: initialBlackCard,
     whiteCardsPicked : initialWhiteCards,
     pickedCard: '',
@@ -42,6 +44,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cards: action.cards,
+        blackCardGroup:action.cards.blackCardGroup,
+        whiteCardGroup:action.cards.whiteCardGroup,
         blackCardPicked: action.cards.blackCardGroup[Math.floor(Math.random()*action.cards.blackCardGroup.length)],
         whiteCardsPicked:action.cards.whiteCardGroup.sort(function(){return .5 - Math.random()}).slice(0,3)
       };
