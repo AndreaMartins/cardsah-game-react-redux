@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import classes from './WhiteCardAdd.css';
 import { connect } from 'react-redux';
+import * as actions from '../../../../store/actions';
 
 class whiteCardAdd extends Component {
   state ={
     cardData :{
-      id:'w7',
+      id:'',
       phrase:''
     }
   }
@@ -49,7 +50,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddCard: (id, phrase) => dispatch({type:'ADD_CARD', cardData:{id:id, phrase:phrase}}),
+    onAddCard : (id, phrase) => dispatch(actions.addCard(id, phrase)),
+    // onAddCard: (id, phrase) => dispatch({type:'ADD_CARD', cardData:{id:id, phrase:phrase}}),
     onCloseAdd: () => dispatch({type:'CLOSE_ADD'})
   }
 }

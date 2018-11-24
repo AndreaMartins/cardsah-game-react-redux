@@ -11,8 +11,8 @@ const initialWhiteCards =[
 // initial state deberia ser una copia de un shuffle y quedarse asi
 const initialState = {
     cards:'',
-    whiteCardGroup:'',
-    blackCardGroup:'',
+    whiteCardGroup:[ ],
+    blackCardGroup:[ ],
     blackCardPicked: initialBlackCard,
     whiteCardsPicked : initialWhiteCards,
     pickedCard: '',
@@ -41,13 +41,14 @@ const reducer = (state = initialState, action) => {
       };
 
     case actionTypes.SET_CARDS:
+      console.log(action.cards)
       return {
         ...state,
         cards: action.cards,
-        blackCardGroup:action.cards.blackCardGroup,
-        whiteCardGroup:action.cards.whiteCardGroup,
-        blackCardPicked: action.cards.blackCardGroup[Math.floor(Math.random()*action.cards.blackCardGroup.length)],
-        whiteCardsPicked:action.cards.whiteCardGroup.sort(function(){return .5 - Math.random()}).slice(0,3)
+        blackCardGroup:action.cards.fetchedBlackCards,
+        whiteCardGroup:action.cards.fetchedWhiteCards,
+        blackCardPicked: action.cards.fetchedBlackCards[Math.floor(Math.random()*action.cards.fetchedBlackCards.length)],
+        whiteCardsPicked:action.cards.fetchedWhiteCards.sort(function(){return .5 - Math.random()}).slice(0,3)
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
       return {
@@ -110,16 +111,30 @@ const reducer = (state = initialState, action) => {
         isAdding: true,
       };
     case actionTypes.ADD_CARD:
-      const theAddedCard = {
-        id:action.cardData.id,
-        phrase:action.cardData.phrase
-      }
+      // const theAddedCard = {
+      //   id:action.cardData.id,
+      //   phrase:action.cardData.phrase
+      // }
       return{
         ...state,
         whiteCardsPicked:state.whiteCardsPicked.concat(theAddedCard),
         addedCard:'',
         isAdding: true
       }
+
+    case actionTypes.SUBMIT_CARD:
+        const theAddedCard = {
+          id: action.card.id,
+          phrase: action.card.phrase
+         }
+        return {
+          ...state,
+          whiteCardsPicked:state.whiteCardsPicked.concat(theAddedCard)
+        }
+    case actionTypes.SUBMIT_CARD_FAILED:
+        return {
+
+        }
     case actionTypes.CLOSE_ADD:
       return {
         ...state,
