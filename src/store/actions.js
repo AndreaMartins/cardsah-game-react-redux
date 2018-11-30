@@ -83,7 +83,7 @@ export const addCard = (cardId, cardPhrase) => {
      }
     axios.post('cards/whiteCardGroup.json', card)
       .then(response => {
-        dispatch(submitCard(response.data, card));
+        dispatch(submitCard(card));
       })
       .catch(error =>{
         dispatch(submitCardFailed(error));

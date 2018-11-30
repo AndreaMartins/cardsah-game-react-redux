@@ -123,6 +123,7 @@ const reducer = (state = initialState, action) => {
       }
 
     case actionTypes.SUBMIT_CARD:
+        console.log(action);
         const theAddedCard = {
           id: action.card.id,
           phrase: action.card.phrase

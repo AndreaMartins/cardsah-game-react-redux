@@ -8,7 +8,7 @@ import WhiteCardForm from './WhiteCard/WhiteCardForm/WhiteCardForm';
 import WhiteCardAdd from './WhiteCard/WhiteCardAdd/WhiteCardAdd';
 
 const whiteCards = (props) => {
-
+  console.log(props.whiteCardsPicked)
   return(
     <div>
       <div className="container__WhiteCard">
