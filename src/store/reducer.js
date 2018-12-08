@@ -1,29 +1,39 @@
 import * as actionTypes from './actions';
 
-const initialBlackCard = { phrase: 'shuffling', id:'b1'};
+const initialBlackCard = {
+  phrase: 'shuffling',
+  id: 'b1'
+};
 
-const initialWhiteCards =[
-  { phrase: 'shuffling', id:'w1'},
-  { phrase: 'shuffling', id:'w2'},
-  { phrase: 'shuffling', id:'w3'},
+const initialWhiteCards = [
+  {
+    phrase: 'shuffling',
+    id: 'w1'
+  }, {
+    phrase: 'shuffling',
+    id: 'w2'
+  }, {
+    phrase: 'shuffling',
+    id: 'w3'
+  }
 ]
 
 // initial state deberia ser una copia de un shuffle y quedarse asi
 const initialState = {
-    cards:'',
-    whiteCardGroup:[ ],
-    blackCardGroup:[ ],
-    blackCardPicked: initialBlackCard,
-    whiteCardsPicked : initialWhiteCards,
-    pickedCard: '',
-    detailedCard:'',
-    editedCard: '',
-    addedCard:'',
-    picked: false,
-    isEditing: false,
-    isAdding: false,
-    isDetailing: false,
-    error: false
+  cards: '',
+  whiteCardGroup: [],
+  blackCardGroup: [],
+  blackCardPicked: initialBlackCard,
+  whiteCardsPicked: initialWhiteCards,
+  pickedCard: '',
+  detailedCard: '',
+  editedCard: '',
+  addedCard: '',
+  picked: false,
+  isEditing: false,
+  isAdding: false,
+  isDetailing: false,
+  error: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,8 +41,8 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.STORE_RESULT:
       const thePickedCard = {
-        id:action.cardData.id,
-        phrase:action.cardData.phrase
+        id: action.cardData.id,
+        phrase: action.cardData.phrase
       }
       return {
         ...state,
@@ -45,10 +55,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cards: action.cards,
-        blackCardGroup:action.cards.fetchedBlackCards,
-        whiteCardGroup:action.cards.fetchedWhiteCards,
-        blackCardPicked: action.cards.fetchedBlackCards[Math.floor(Math.random()*action.cards.fetchedBlackCards.length)],
-        whiteCardsPicked:action.cards.fetchedWhiteCards.sort(function(){return .5 - Math.random()}).slice(0,3)
+        blackCardGroup: action.cards.fetchedBlackCards,
+        whiteCardGroup: action.cards.fetchedWhiteCards,
+        blackCardPicked: action.cards.fetchedBlackCards[Math.floor(Math.random() * action.cards.fetchedBlackCards.length)],
+        whiteCardsPicked: action.cards.fetchedWhiteCards.sort(function() {
+          return .5 - Math.random()
+        }).slice(0, 3)
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
       return {
@@ -58,88 +70,85 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.OPEN_DETAIL:
       const theDetailedCard = {
-        id:action.cardData.id,
-        phrase:action.cardData.phrase
+        id: action.cardData.id,
+        phrase: action.cardData.phrase
       }
       return {
         ...state,
-        detailedCard:theDetailedCard,
-        isDetailing: true,
+        detailedCard: theDetailedCard,
+        isDetailing: true
       };
     case actionTypes.CLOSE_DETAIL:
       return {
         ...state,
-        detailedCard:'',
-        isDetailing:false
+        detailedCard: '',
+        isDetailing: false
       }
     case actionTypes.OPEN_EDIT:
       const theEditedCard = {
-        id:action.cardData.id,
-        phrase:action.cardData.phrase
+        id: action.cardData.id,
+        phrase: action.cardData.phrase
       }
       return {
         ...state,
         editedCard: theEditedCard,
-        isEditing: true,
+        isEditing: true
       }
     case actionTypes.UPDATE_EDIT:
       const theUpdatedCard = {
-        id:action.cardData.id,
-        phrase:action.cardData.phrase
+        id: action.cardData.id,
+        phrase: action.cardData.phrase
       }
 
-      return{
+      return {
         ...state,
-        whiteCardsPicked :
-        state.whiteCardsPicked.map((e)=> {
-            if (e.id == state.editedCard.id){
-              return theUpdatedCard
-            }
-            return e
-          }),
+        whiteCardsPicked: state.whiteCardsPicked.map((e) => {
+          if (e.id == state.editedCard.id) {
+            return theUpdatedCard
+          }
+          return e
+        }),
         isEditing: true
       }
     case actionTypes.CLOSE_EDIT:
-      return{
+      return {
         ...state,
-        editedCard:'',
-        isEditing:false
+        editedCard: '',
+        isEditing: false
       }
     case actionTypes.OPEN_ADD:
       return {
         ...state,
-        isAdding: true,
+        isAdding: true
       };
     case actionTypes.ADD_CARD:
       // const theAddedCard = {
       //   id:action.cardData.id,
       //   phrase:action.cardData.phrase
       // }
-      return{
+      return {
         ...state,
-        whiteCardsPicked:state.whiteCardsPicked.concat(theAddedCard),
-        addedCard:'',
+        whiteCardsPicked: state.whiteCardsPicked.concat(theAddedCard),
+        addedCard: '',
         isAdding: true
       }
 
     case actionTypes.SUBMIT_CARD:
-        console.log(action);
-        const theAddedCard = {
-          id: action.card.id,
-          phrase: action.card.phrase
-         }
-        return {
-          ...state,
-          whiteCardsPicked:state.whiteCardsPicked.concat(theAddedCard)
-        }
+      console.log(action);
+      const theAddedCard = {
+        id: action.card.id,
+        phrase: action.card.phrase
+      }
+      return {
+        ...state,
+        whiteCardsPicked: state.whiteCardsPicked.concat(theAddedCard)
+      }
     case actionTypes.SUBMIT_CARD_FAILED:
-        return {
-
-        }
+      return {}
     case actionTypes.CLOSE_ADD:
       return {
         ...state,
-        isAdding:false,
+        isAdding: false
       }
     default:
       return state;

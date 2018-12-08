@@ -6,6 +6,7 @@ import WhiteCard from './WhiteCard/WhiteCard';
 import WhiteCardDet from './WhiteCard/WhiteCardDet/WhiteCardDet';
 import WhiteCardForm from './WhiteCard/WhiteCardForm/WhiteCardForm';
 import WhiteCardAdd from './WhiteCard/WhiteCardAdd/WhiteCardAdd';
+import Modal from '../../UI/Modal/Modal';
 
 const whiteCards = (props) => {
   console.log(props.whiteCardsPicked)
@@ -31,8 +32,9 @@ const whiteCards = (props) => {
           )
         )}
       </div>
-      <div>{props.isDetailing ? <WhiteCardDet/> : null }</div>
-      <div>{props.isEditing ? <WhiteCardForm/> : null }</div>
+       <Modal show={props.isDetailing}><WhiteCardDet/></Modal>
+      {/* <div>{props.isDetailing ? <Modal show={props.isDetailing}><WhiteCardDet/></Modal> : null }</div> */}
+      {/* <div>{props.isEditing ? <WhiteCardForm/> : null }</div> */}
       <div>{props.isAdding ? <WhiteCardAdd/> : null }</div>
       <div className="add__WhiteCard">
         <button onClick={() =>props.onOpenAddCard()}> + </button>

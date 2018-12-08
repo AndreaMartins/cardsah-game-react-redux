@@ -6,13 +6,19 @@ import { connect } from 'react-redux';
 const whiteCardDet = (props) => {
 
   return(
-    <div className="classes.WhiteCardDet">
+    <div className="WhiteCardDet">
+      {props.isDetailing ? (
         <div>
+        <div >
           <p>{props.detailedCard.phrase}</p>
           <p>{props.detailedCard.phrase}</p>
           <p>{props.detailedCard.phrase}</p>
         </div>
+        <div>blabla</div>
         <button onClick ={() => props.onCloseDetail()}>close modal</button>
+        </div>
+      ) : null }
+
     </div>
   )
 };
